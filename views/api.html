@@ -1,0 +1,4 @@
+<ul class="list-view">
+	<li class="search"><input type="search" ng-model="apiSearch" ng-enter="" placeholder="Search..." /></li>
+	<li ng-repeat="page in pages | filter:{ section: 'api' } | filter:apiSearch"><a ng-href='#/api/{{page.id}}'>{{page.shortName}}</a></li>
+</ul>

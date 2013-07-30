@@ -1,0 +1,14 @@
+{
+  "name": "simply-mobile",
+  "repository": "https://github.com/DevinClark/simply-mobile",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-jshint": "~0.2.0",
+    "grunt-contrib-uglify": "~0.1.2",
+    "grunt-css": "~0.5.4",
+    "grunt-bower-concat": "git://github.com/sapegin/grunt-bower-concat.git",
+    "grunt-casperjs": "~1.0.6",
+    "grunt-shell": "~0.2.2"
+  }
+}

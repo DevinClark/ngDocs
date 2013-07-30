@@ -1,0 +1,53 @@
+$bold_stack: "Open Sans Bold", Helvetica, Arial, sans-serif;
+$italic_stack: "Open Sans Italic", Helvetica, Arial, sans-serif;
+$body_stack: "Open Sans", Helvetica, Arial, sans-serif;
+$title_stack: Helvetica, Arial, sans-serif;
+
+body {
+	font-family: $body_stack;
+	font-size: 16px;
+	line-height: 1.3;
+}
+
+em, 
+i {
+	font-family: $italic_stack;
+	font-weight: normal;
+}
+
+strong, 
+b {
+	font-family: $bold_stack;
+	font-weight: normal;
+}
+
+h1 { font-size: 44px; }
+h2 { font-size: 27px; }
+h3 { font-size: 23px; }
+h4 { font-size: 20px; }
+h5 { font-size: 17px; }
+h6 { font-size: 14px; }
+
+ul {
+	list-style-type: square;
+	list-style-position: inside;
+	//padding-left: 10px;
+}
+ul ul {
+	padding-left: 15px;
+}
+form ul {
+	padding-left: 0;
+	list-style-type: none;
+}
+
+.label {
+	background: #2ba6cb;
+	color: white;
+	font-weight: bold;
+	padding: 4px 4px;
+	display: inline-block;
+	position: relative;
+	white-space: nowrap;
+	line-height: 1;
+}

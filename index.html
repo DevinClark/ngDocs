@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="Docular">
+<head>
+	<meta charset="utf-8">
+	<title>ngDocs</title>
+	<meta name="description" content="">
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="cleartype" content="on">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="SimplyMobile">
+
+	<link rel="apple-touch-icon-precomposed" href="img/icon/Icon.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/icon/Icon-72@.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/icon/Icon@2x.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/icon/Icon-72@2x.png" />
+
+	<link rel="stylesheet" href="css/base.css">
+	<script src="components/prefix-free/prefixfree.min.js"></script>
+</head>
+<body ng-class="bodyClass">
+
+	<div class="page page-active js-content-wrap">
+
+		<div id="main-nav">
+			<ul>
+				<li><a href="#/api" ng-class="{active: activeClass == 'api'}"><span class="icon-code"></span>API</a></li>
+				<li><a href="#/guide" ng-class="{active: activeClass == 'guide'}"><span class="icon-book"></span>Guide</a></li>
+				<li><a href="#/recent"  ng-class="{active: activeClass == 'recent'}"><span class="icon-time"></span>Recent</a></li>
+				<li><a href="#/settings"  ng-class="{active: activeClass == 'settings'}"><span class="icon-wrench"></span>Settings</a></li>
+			</ul>
+		</div>
+
+		<img data-ng-show="loading" src='./img/loading.gif' id="loading">
+
+		<header class="fixed-header">
+			<div class="btn-group-left">
+				<a ng-click="goBack()" class="btn btn-left icon-reply"></a>
+			</div>
+			<h1 ng-bind="pageTitle || 'Docular' | truncate:20"></h1>
+			<div class="btn-group-right mobile-only">
+				<a href="#/settings" ng-hide="isSingle == true" class="btn icon-wrench"></a>
+			</div>
+		</header>
+
+		<section id="js-primary-content" class="content" style="width:100%; position: absolute; left: 0">
+			<div ng-view ng-animate="'fade'"></div>
+		</section>
+
+		<div id="footer-nav" class="bottom-bar fixed-bottom mobile-only with-labels">
+			<ul>
+				<li><a href="#/api" ng-class="{active: activeClass == 'api'}" class="icon-code"><span>API</span></a></li>
+				<li><a href="#/guide" ng-class="{active: activeClass == 'guide'}" class="icon-book"><span>Guide</span></a></li>
+				<li><a href="#/recent"  ng-class="{active: activeClass == 'recent'}" class="icon-time"><span>Recent</span></a></li>
+			</ul>
+		</div>
+
+	</div><!-- /.page -->
+
+	<script src="cordova.js"></script>
+	<script src="js/assets.js"></script>
+	<script src="js/app.js"></script>
+	<script src="views/docs/1.1.5/docs-keywords.js"></script>
+</body>
+</html>

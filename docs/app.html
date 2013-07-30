@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Docular app.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h1">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1>Docular app.js</h1>
+<p><em>An <a href="http://overdid.it">OverDid.It</a> Project.</em></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="string">"use strict"</span>;
+
+<span class="comment">/*jshint noarg:true, noempty:true, eqeqeq:true, bitwise:true, strict:true, undef:true, unused:false, curly:true, browser:true, devel:true, jquery:true, indent:4, maxerr:50, newcap:true */</span>
+<span class="comment">/*global Handlebars, jQuery, FastClick, angular */</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Override jQuery.error for display in Console.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>$.error = console.error;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Global Settings</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> GlobalSettings = {
+	tabletMin: <span class="number">768</span>,
+	tabletMax: <span class="number">1025</span>,
+	env: <span class="string">"cordova"</span>
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h2>Start</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> Start = {
+	battle: <span class="function"><span class="keyword">function</span> <span class="params">()</span>{</span>
+		<span class="keyword">this</span>.inits();
+		<span class="keyword">this</span>.styling();
+	},
+	firstLoad: <span class="function"><span class="keyword">function</span> <span class="params">()</span>{</span>
+		<span class="keyword">this</span>.battle();
+		ProgressBar.load();
+
+		<span class="keyword">switch</span>(GlobalSettings.env) {
+		<span class="keyword">case</span> <span class="string">"web"</span>:
+			<span class="keyword">break</span>;
+		<span class="keyword">case</span> <span class="string">"cordova"</span>:
+			CordovaApp.initialize();
+			<span class="keyword">break</span>;
+		}
+	},
+	inits: <span class="function"><span class="keyword">function</span> <span class="params">()</span>{</span>
+		OrientationCheck.init();
+		ScrollingFixes.init();
+		Navigation.init();
+	},
+	styling: <span class="function"><span class="keyword">function</span> <span class="params">()</span>{</span>
+		<span class="keyword">var</span> formElements = {
+			<span class="string">'input[type="button"]'</span>: <span class="string">'btn'</span>,
+			<span class="string">'input[type="checkbox"]'</span>: <span class="string">'checkbox'</span>,
+			<span class="string">'input[type="file"]'</span>: <span class="string">'file'</span>,
+			<span class="string">'input[type="image"]'</span>: <span class="string">'image'</span>,
+			<span class="string">'input[type="password"]'</span>: <span class="string">'password'</span>,
+			<span class="string">'input[type="radio"]'</span>: <span class="string">'radio'</span>,
+			<span class="string">'input[type="submit"]'</span>: <span class="string">'submit btn'</span>,
+			<span class="string">'input[type="reset"]'</span>: <span class="string">'reset'</span>,
+			<span class="string">'input[type="text"]'</span>: <span class="string">'text'</span>,
+			<span class="string">'input[type="email"]'</span>: <span class="string">'email'</span>,
+			<span class="string">'input[type="url"]'</span>: <span class="string">'url'</span>,
+			<span class="string">'input[type="search"]'</span>: <span class="string">'search'</span>,
+			<span class="string">'input[type="tel"]'</span>: <span class="string">'tel'</span>,
+			<span class="string">'input[type="date"]'</span>: <span class="string">'date'</span>,
+			<span class="string">'input[type="datetime"]'</span>: <span class="string">'datetime'</span>,
+			<span class="string">'input[type="range"]'</span>: <span class="string">'range'</span>
+		};
+		<span class="keyword">for</span>(<span class="keyword">var</span> element <span class="keyword">in</span> formElements) {
+			$(element).addClass(formElements[element]);
+		}
+		ProgressBar.init();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Ensures the bottom bar elements are always the correct width, regardless of the number of items.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		$(<span class="string">'.bottom-bar li'</span>).css(<span class="string">"width"</span>, <span class="number">100</span> / $(<span class="string">'.bottom-bar li'</span>).length + <span class="string">"%"</span>);
+
+	}
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h2>CordovaApp</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> CordovaApp = {
+	initialize: <span class="keyword">function</span>() {
+		<span class="keyword">this</span>.bind();
+	},
+	bind: <span class="keyword">function</span>() {
+		document.addEventListener(<span class="string">'deviceready'</span>, CordovaApp.deviceready, <span class="literal">false</span>);
+	},
+	deviceready: <span class="keyword">function</span>() {
+		CordovaApp.report(<span class="string">'deviceready'</span>);
+	},
+	report: <span class="keyword">function</span>(id) { 
+		console.log(<span class="string">"report:"</span> + id);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>angular.bootstrap(document, [&quot;angulargap&quot;]);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	}
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h2>OrientationCheck</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> OrientationCheck = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h3>init</h3>
+<p>Initialize OrientationCheck and add body classes. </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	init: <span class="keyword">function</span>() {
+		$(<span class="string">"body"</span>).addClass(<span class="string">"landscape"</span>);
+		OrientationCheck.check();
+		OrientationCheck.resize();
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <h3>debounce</h3>
+<p>Postpone execution of fn until after delay milliseconds have passed since the fn&#39;s last execution.</p>
+<ul>
+<li><code>fn</code> is the function to debounce</li>
+<li><code>delay</code> is the amount of time to wait in milliseconds.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	debounce: <span class="keyword">function</span>(fn, delay) {
+		<span class="keyword">var</span> timer = <span class="literal">null</span>;
+		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+			<span class="keyword">var</span> context = <span class="keyword">this</span>, args = arguments;
+			clearTimeout(timer);
+			timer = setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+				fn.apply(context, args);
+			}, delay);
+		};
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h3>check</h3>
+<p>Checks to see if the window is in portrait or landscape orientation.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	check: <span class="keyword">function</span>() {
+		<span class="keyword">if</span>(window.innerWidth &gt; window.innerHeight) {
+			$(<span class="string">"body"</span>).addClass(<span class="string">"landscape"</span>).removeClass(<span class="string">"portrait"</span>);
+		} <span class="keyword">else</span> {
+			$(<span class="string">"body"</span>).addClass(<span class="string">"portrait"</span>).removeClass(<span class="string">"landscape"</span>);
+		}
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <h3>resize</h3>
+<p>Recheckes the orientation and fixes window scrolling.</p>
+<ul>
+<li>callback a callback function to hook into <code>resize()</code> and functionality.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	resize: <span class="keyword">function</span>(callback) {
+		window.addEventListener(<span class="string">"resize"</span>, <span class="keyword">function</span>() {
+			OrientationCheck.check();
+			ScrollingFixes.setScrolling(window.innerHeight);
+			<span class="keyword">if</span>(callback) {
+				callback(window.innerWidth, window.innerHeight);
+			}
+		}, <span class="literal">false</span>);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <h3>isTablet</h3>
+<p>Returns true if the device width is in the range of tabletMin and TabletMax in GlobalSettings.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	isTablet: <span class="keyword">function</span>() {
+		<span class="keyword">return</span> (window.innerWidth &gt;= GlobalSettings.tabletMin &amp;&amp; window.innerWidth &lt;= GlobalSettings.tabletMax);
+	}
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <h2>ScrollingFixes</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> ScrollingFixes = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <h3>init</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	init: <span class="function"><span class="keyword">function</span> <span class="params">()</span>{</span>
+		<span class="keyword">this</span>.setScrolling();
+		<span class="keyword">this</span>.disableElastic();
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <h3>setScrolling</h3>
+<p>Makes the main content area main scrolling area. Accepts a parameter that is used in <code>OrientationCheck</code> to reflow height on orientation change.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	setScrolling: <span class="keyword">function</span>(winHeight) {
+		winHeight = (<span class="keyword">typeof</span> winHeight === <span class="string">"undefined"</span>) ? window.innerHeight : winHeight;
+		<span class="keyword">var</span> headerHeight = $(<span class="string">'.js-content-wrap header'</span>).outerHeight(<span class="literal">false</span>);
+		<span class="keyword">var</span> footerHeight = ( $(<span class="string">'.bottom-bar'</span>).css(<span class="string">"display"</span>) === <span class="string">"none"</span> ) ? <span class="number">0</span> : $(<span class="string">'.bottom-bar'</span>).outerHeight(<span class="literal">false</span>);
+		<span class="keyword">var</span> totalHeight = winHeight - headerHeight - footerHeight;
+		$(<span class="string">'.js-content-wrap'</span>)
+		.css({
+			<span class="string">'height'</span>: winHeight
+		})
+		.find(<span class="string">'section'</span>)
+		.css({
+			<span class="string">'height'</span>: totalHeight,
+			<span class="string">'overflow'</span>: <span class="string">'scroll'</span>,
+			<span class="string">'-webkit-overflow-scrolling'</span>: <span class="string">'touch'</span>
+		});
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <h3>disableElastic</h3>
+<p>Disables the annoying and evil rubber band scrolling.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	disableElastic: <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+		<span class="keyword">var</span> link = $(<span class="string">'.page section'</span>);
+		
+		<span class="keyword">var</span> docHeight = $(<span class="string">'.page #js-primary-content'</span>).outerHeight(<span class="literal">false</span>);
+		<span class="keyword">var</span> headerHeight = $(<span class="string">'.js-content-wrap header'</span>).outerHeight(<span class="literal">false</span>);
+		<span class="keyword">var</span> footerHeight = ( $(<span class="string">'.bottom-bar'</span>).css(<span class="string">"display"</span>) === <span class="string">"none"</span> ) ? <span class="number">0</span> : $(<span class="string">'.bottom-bar'</span>).outerHeight(<span class="literal">false</span>);
+		<span class="keyword">var</span> totalHeight = docHeight - headerHeight - footerHeight;
+		$(<span class="string">'.page #js-primary-content &gt; div'</span>).css(<span class="string">'min-height'</span>, totalHeight);
+		
+
+		$(window).bind(<span class="string">'touchstart'</span>,<span class="keyword">function</span>(){
+			<span class="keyword">var</span> scrolled = link.scrollTop();
+			<span class="keyword">var</span> winHeight = link.height();
+			<span class="keyword">var</span> contentHeight = $(<span class="string">'.page section &gt; div'</span>).innerHeight();
+			<span class="keyword">var</span> fromBottom = contentHeight - winHeight - scrolled;
+			
+			<span class="keyword">if</span>( scrolled &lt; <span class="number">1</span> ) {
+				link.animate({scrollTop: scrolled + <span class="number">1</span>}, <span class="number">0</span>);
+			}
+			<span class="keyword">if</span>( fromBottom &lt; <span class="number">1</span> ) {
+				link.animate({scrollTop: scrolled - <span class="number">1</span>},<span class="number">0</span>);
+			}
+		});
+	}
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <h2>ProgressBar</h2>
+<p>Takes elements with the class of <code>meter</code> and turns them into pretty progress bars. </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> ProgressBar = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <h3>init</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	init: <span class="keyword">function</span>() {
+		$(<span class="string">".meter"</span>).each(<span class="keyword">function</span>() {
+			$(<span class="keyword">this</span>).append(<span class="string">"&lt;span /&gt;"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Sets the width of the progress bar.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			$(<span class="string">"span"</span>, <span class="keyword">this</span>).width($(<span class="keyword">this</span>).data(<span class="string">"progress"</span>) + <span class="string">"%"</span>);
+			<span class="keyword">if</span>($(<span class="keyword">this</span>).hasClass(<span class="string">"show-progress"</span>)) {
+				$(<span class="string">"span"</span>, <span class="keyword">this</span>).html(<span class="string">"&lt;b&gt;"</span> + $(<span class="keyword">this</span>).data(<span class="string">"progress"</span>) + <span class="string">"%&lt;/b&gt;"</span>);
+			}
+		});
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <h3>load</h3>
+<p>Animates the load of the progress bar.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	load: <span class="keyword">function</span>() {
+		$(<span class="string">".meter"</span>).each(<span class="keyword">function</span>() {
+			$(<span class="string">"span"</span>, <span class="keyword">this</span>).width(<span class="number">0</span>).animate({
+				width: $(<span class="keyword">this</span>).data(<span class="string">"progress"</span>) + <span class="string">"%"</span>
+			}, <span class="number">1200</span>);
+		});
+	}
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <h2>Navigation</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> Navigation = {
+	s: {
+		navWidth: $(document).width(),
+		menuContainer: <span class="string">'#main-nav'</span>,
+		menuItems: <span class="string">'#main-nav ul li a'</span>,
+	},
+	init: <span class="function"><span class="keyword">function</span> <span class="params">()</span>{</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>These functions are only needed on mobile. Tablet is getting a different menu.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="keyword">if</span>(OrientationCheck.isTablet()) {
+			<span class="keyword">this</span>.sideNavInit();
+		}
+		<span class="keyword">else</span> {
+			$(<span class="keyword">this</span>.s.menuContainer).removeClass(<span class="string">"side-menu"</span>);
+		}
+	},
+	sideNavInit: <span class="keyword">function</span>() {
+		<span class="keyword">var</span> $nav = $(<span class="keyword">this</span>.s.menuContainer);
+		$nav.addClass(<span class="string">"side-menu"</span>);
+	}
+};
+
+$(<span class="keyword">function</span>(){
+	Start.firstLoad();
+});
+
+
+<span class="keyword">var</span> Docular = angular.module(<span class="string">'Docular'</span>, [<span class="string">'ngMobile'</span>, <span class="string">'ngSanitize'</span>]);
+
+Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvider, $locationProvider) {
+	$routeProvider.when(<span class="string">"/"</span>, {
+		templateUrl: <span class="string">"views/home.html"</span>,
+		controller: <span class="string">"MainCtrl"</span>,
+		activeClass: <span class="string">'home'</span>,
+		bodyClass: <span class="string">'home'</span>
+	})
+	.when(<span class="string">"/api"</span>, {
+		templateUrl: <span class="string">"views/api.html"</span>,
+		controller: <span class="string">"APICtrl"</span>,
+		activeClass: <span class="string">'api'</span>,
+		bodyClass: <span class="string">'page-api'</span>
+	})
+	.when(<span class="string">"/api/:id/"</span>, {
+		templateUrl: <span class="string">"views/single-api.html"</span>,
+		controller: <span class="string">"APISingleCtrl"</span>,
+		activeClass: <span class="string">'api'</span>,
+		isSingle: <span class="literal">true</span>,
+		bodyClass: <span class="string">'single single-api'</span>
+	})
+	.when(<span class="string">"/guide"</span>, {
+		templateUrl: <span class="string">"views/guide.html"</span>,
+		controller: <span class="string">"APICtrl"</span>,
+		activeClass: <span class="string">'guide'</span>,
+		bodyClass: <span class="string">'page-api'</span>
+	})
+	.when(<span class="string">"/guide/:id"</span>, {
+		templateUrl: <span class="string">"views/single-guide.html"</span>,
+		controller: <span class="string">"APISingleCtrl"</span>,
+		activeClass: <span class="string">'guide'</span>,
+		isSingle: <span class="literal">true</span>,
+		bodyClass: <span class="string">'single single-guide'</span>
+	})
+	.when(<span class="string">"/recent"</span>, {
+		templateUrl: <span class="string">"views/recent.html"</span>,
+		controller: <span class="string">"RecentCtrl"</span>,
+		activeClass: <span class="string">'recent'</span>,
+		bodyClass: <span class="string">'page-recent'</span>
+	})
+	.when(<span class="string">"/settings"</span>, {
+		templateUrl: <span class="string">"views/settings.html"</span>,
+		controller: <span class="string">"SettingsCtrl"</span>,
+		activeClass: <span class="string">'settings'</span>,
+		bodyClass: <span class="string">'settings'</span>
+	})
+	.otherwise({redirectTo: <span class="string">"/"</span>});
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <h2>Init</h2>
+<p>This method contains defaults that need to run on each load. </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Docular.run(<span class="keyword">function</span>($rootScope, $route, $window, PagesFactory) {
+
+	$rootScope.settings = {};
+	$rootScope.settings.version = <span class="string">'1.1.5'</span>; <span class="comment">// replace with setting loaded from local storage.</span>
+
+	$rootScope.goBack = <span class="keyword">function</span>() {
+		$window.history.back();
+	};
+
+	$rootScope.$on(<span class="string">'$routeChangeSuccess'</span>, <span class="keyword">function</span>(ev,data) {
+		$rootScope.loading = <span class="literal">true</span>;
+		$rootScope.controller = data.$$route.controller;
+		$rootScope.activeClass = $route.current.$$route.activeClass;
+		$rootScope.isSingle = $route.current.$$route.isSingle || <span class="literal">false</span>;
+		$rootScope.bodyClass = $route.current.$$route.bodyClass || <span class="string">""</span>;
+		$rootScope.isTablet = OrientationCheck.isTablet();
+	});
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <h2>Services</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Docular.factory(<span class="string">'PagesFactory'</span>, [<span class="string">'$window'</span>, <span class="string">'$q'</span>, <span class="string">'$timeout'</span>, <span class="keyword">function</span>($window, $q, $timeout) {
+	<span class="keyword">var</span> page;
+
+	<span class="keyword">return</span> <span class="keyword">function</span>() {
+		<span class="keyword">var</span> deferred = $q.defer();
+
+		$timeout(<span class="keyword">function</span>() {
+			<span class="keyword">if</span>(<span class="keyword">typeof</span> page === <span class="string">"undefined"</span>) {
+				<span class="keyword">var</span> page = $window.NG_PAGES;
+				deferred.resolve(page);
+			}
+			<span class="keyword">else</span> {
+				deferred.resolve(page);
+			}
+		}, <span class="number">100</span>);
+
+		<span class="keyword">return</span> deferred.promise;
+	};
+}]);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <h2>Directives</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <h3>ngEnter</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Docular.directive(<span class="string">'ngEnter'</span>, <span class="keyword">function</span>() {
+	<span class="keyword">return</span> <span class="keyword">function</span>(scope, element, attrs) {
+		element.bind(<span class="string">"keydown keypress"</span>, <span class="keyword">function</span>(event) {
+			<span class="keyword">if</span>(event.which === <span class="number">13</span>) {
+				$(element).blur();
+				event.preventDefault();
+			}
+		});
+	};
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <h2>Filters</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Docular.filter(<span class="string">'truncate'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">(text, length, end)</span> {</span>
+		<span class="keyword">if</span> (isNaN(length)) length = <span class="number">10</span>;
+		<span class="keyword">if</span> (end === <span class="literal">undefined</span>) end = <span class="string">"..."</span>;
+
+		<span class="keyword">if</span>(OrientationCheck.isTablet() === <span class="literal">true</span>) {
+			<span class="keyword">return</span> text;
+		}
+		<span class="keyword">else</span> {
+			<span class="keyword">if</span> (text.length &lt;= length || text.length - end.length &lt;= length)
+				<span class="keyword">return</span> text;
+			<span class="keyword">else</span>
+				<span class="keyword">return</span> String(text).substring(<span class="number">0</span>, length-end.length) + end;
+		}
+	};
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <h2>Controllers</h2>
+<h3>MainCtrl</h3>
+<p>Handles loading the home page.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Docular.controller(<span class="string">'MainCtrl'</span>, [<span class="string">'$rootScope'</span>, <span class="string">'$scope'</span>, <span class="keyword">function</span>($rootScope, $scope) {
+	$rootScope.pageTitle = <span class="string">"Docular"</span>;
+	$rootScope.loading = <span class="literal">false</span>;
+}]);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <h3>APICtrl</h3>
+<p>Handles the top level API page.
+@requires PagesFactory</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Docular.controller(<span class="string">'APICtrl'</span>, [<span class="string">'$rootScope'</span>, <span class="string">'$scope'</span>, <span class="string">'$window'</span>, <span class="string">'PagesFactory'</span>, <span class="string">'$location'</span>, <span class="keyword">function</span>($rootScope, $scope, $window, PagesFactory, $location) {
+	$rootScope.pageTitle = ($location.path().indexOf(<span class="string">"api"</span>) !== -<span class="number">1</span>) ? <span class="string">"API Reference"</span> : <span class="string">"Developer Guide"</span>;
+	PagesFactory().then(<span class="keyword">function</span>(data) {
+		$scope.pages = data;
+		$rootScope.loading = <span class="literal">false</span>;
+	});
+
+}]);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <h3>APISingleCtrl</h3>
+<p>Handles the child level API and guide pages.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Docular.controller(<span class="string">'APISingleCtrl'</span>, [<span class="string">'$rootScope'</span>, <span class="string">'$scope'</span>, <span class="string">'$routeParams'</span>, <span class="string">'$http'</span>, <span class="string">'$timeout'</span>, <span class="string">'$location'</span>, <span class="keyword">function</span>($rootScope, $scope, $routeParams, $http, $timeout, $location) {
+	$rootScope.pageTitle = $routeParams.id.replace(<span class="string">"angular."</span>, <span class="string">""</span>).replace(<span class="string">"dev_guide."</span>, <span class="string">""</span>);
+	$rootScope.previousId = $location.path().replace(<span class="regexp">/\/$/</span>, <span class="string">""</span>);
+
+	$http.get(<span class="string">"views/docs/1.1.5/partials"</span> + $location.path().replace(<span class="regexp">/\/$/</span>, <span class="string">""</span>) + <span class="string">".html"</span>)
+		.success(<span class="keyword">function</span>(data) {
+			<span class="keyword">var</span> $tempContents = $(<span class="string">"&lt;div&gt;"</span> + data + <span class="string">"&lt;/div&gt;"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>Fix code for PrismJS</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			$(<span class="string">".prettyprint"</span>, $tempContents).wrapInner(<span class="string">'&lt;code class="language-javascript" /&gt;'</span>);
+			$(<span class="string">".prettyprint code"</span>, $tempContents).each(<span class="keyword">function</span>() {
+				<span class="keyword">var</span> thePre = $(<span class="keyword">this</span>).parent(<span class="string">"pre"</span>);
+				<span class="keyword">if</span>( thePre.html().split(<span class="regexp">/\n/</span>).length &gt; <span class="number">2</span>) {
+					thePre.addClass(<span class="string">"line-numbers"</span>);
+				}
+			});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>Fix image links.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			$(<span class="string">"img"</span>, $tempContents).each(<span class="keyword">function</span>() {
+				$(<span class="keyword">this</span>).attr(<span class="string">"src"</span>, <span class="string">"views/docs/1.1.5/"</span> + $(<span class="keyword">this</span>).attr(<span class="string">"src"</span>));
+			});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>Unlink relative doc links. They don&#39;t work right anyways.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			$(<span class="string">"a"</span>, $tempContents).filter(<span class="string">":not(a[href^='http://'], a[href^='https://'], a[href^='www'])"</span>).removeAttr(<span class="string">"href"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>Removes live example.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			$(<span class="string">".doc-example-live"</span>, $tempContents).prev(<span class="string">"h2"</span>).remove();
+			$(<span class="string">".doc-example-live"</span>, $tempContents).remove();
+
+			$(<span class="string">"table"</span>, $tempContents).wrap(<span class="string">"&lt;div class='scroll-box'&gt;&lt;/div&gt;"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>Removes inline styling.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			$(<span class="string">'*[style]'</span>, $tempContents).removeAttr(<span class="string">'style'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>TODO: Tabbed sections need a more mobile-friendly style.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			$scope.contents = $tempContents.html();
+			$rootScope.loading = <span class="literal">false</span>;
+		});
+
+		$scope.$watch(<span class="string">'contents'</span>, <span class="keyword">function</span>() {
+			$timeout(<span class="keyword">function</span>() {
+				Prism.highlightAll();
+				$(<span class="string">".doc-wrap"</span>).fitVids();
+			}, <span class="number">0</span>);
+		}, <span class="literal">true</span>);
+}]);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <h3>SettingsCtrl</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Docular.controller(<span class="string">'SettingsCtrl'</span>, [<span class="string">'$rootScope'</span>, <span class="string">'$scope'</span>, <span class="keyword">function</span>($rootScope, $scope) {
+	$rootScope.pageTitle = <span class="string">"Settings"</span>;
+	$rootScope.loading = <span class="literal">false</span>;
+
+	$scope.settings.versions = [
+		{ id: <span class="string">'1.0.7'</span> },
+		{ id: <span class="string">'1.1.5'</span> }
+	];
+	$rootScope.settings.version = $scope.version;
+}]);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <h3>RecentCtrl</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Docular.controller(<span class="string">'RecentCtrl'</span>, [<span class="string">'$rootScope'</span>, <span class="string">'$scope'</span>, <span class="keyword">function</span>($rootScope, $scope) {
+	$rootScope.pageTitle = <span class="string">"Settings"</span>;
+	$rootScope.loading = <span class="literal">false</span>;
+
+	$scope.settings.versions = [
+		{ id: <span class="string">'1.0.7'</span> },
+		{ id: <span class="string">'1.1.5'</span> }
+	];
+	$rootScope.settings.version = $scope.version;
+}]);</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

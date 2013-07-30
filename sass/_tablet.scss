@@ -1,0 +1,51 @@
+@media only screen and (max-width: 1025px) and (min-width: 768px) {
+	body .tablet-only {
+		display: inline-block;
+	}
+	body .mobile-only {
+		display: none;
+	}
+	.content {
+		padding-left: 135px; // side-nav width + 10px
+	}
+
+	.doc-wrap {
+		table {
+			width: 100%;
+
+			th {
+				font-weight: bold;
+				padding-bottom: 5px;
+			}
+		}
+	}
+
+	#main-nav {
+		display: block;
+		width: 125px;
+		background: $primary_accent_color;
+		right: auto;
+		overflow-x: hidden;
+
+		a {
+			text-align: center;
+			font-size: 16px;
+			text-shadow: 0;
+
+			span {
+				margin: 0;
+				font-size: 30px;
+				width: auto;
+				display: block;
+				text-align: center;
+			}
+
+			&.active {
+				background: darken($primary_accent_color, 15);
+				color: white;
+				text-shadow: inherit;
+			}
+		}
+	}
+}
+
