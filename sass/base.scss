@@ -13,12 +13,17 @@ $small-end: $medium-start - 1px;
 /* Colors */
 $primary_accent_color: #ca3c32;
 
+$standard_color: #2ba6cb;
+$alert_color: #c60f13;
+$success_color: #BADA55;
+
 @import "_grid";
 @import "_webfonts";
 @import "_utils";
 @import "_icons";
 @import "_type";
 @import "_forms";
+@import "_notifications";
 //@import "_reveal";
 @import "_slider";
 @import "_animations";

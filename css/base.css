@@ -1470,7 +1470,7 @@ form ul {
   border-radius: 0; }
 
 .btn.success {
-  background: #BADA55;
+  background: #bada55;
   border: 1px solid #93ad41; }
 
 .btn.alert {
@@ -1548,6 +1548,28 @@ textarea {
   background-color: #bada55;
   border: 0;
   box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 0.2), -2px 0px 2px 0px rgba(0, 0, 0, 0.2), inset 0 -2px 1px 0 rgba(234, 253, 155, 0.6), inset 0 2px 1px 0px rgba(99, 118, 41, 0.6); }
+
+.notification {
+  display: block;
+  font-family: "Open Sans Bold", Helvetica, Arial, sans-serif;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 100;
+  padding: 12px 10px;
+  color: white;
+  background: #2ba6cb;
+  opacity: 0;
+  transition: opacity 300ms ease-in; }
+
+.notification.loaded {
+  opacity: 1; }
+
+.notification.alert {
+  background: #c60f13; }
+
+.notification.success {
+  background: #bada55; }
 
 .slider {
   overflow: hidden;

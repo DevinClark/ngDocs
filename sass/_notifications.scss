@@ -1,0 +1,23 @@
+.notification {
+	display: block;
+	font-family: $bold_stack;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	z-index: 100;
+	padding: 12px 10px;
+	color: white;
+	background: $standard_color;
+	opacity: 0;
+	transition: opacity 300ms ease-in;
+}
+.notification.loaded {
+	opacity: 1;
+}
+
+.notification.alert {
+	background: $alert_color;
+}
+.notification.success {
+	background: $success_color;
+}

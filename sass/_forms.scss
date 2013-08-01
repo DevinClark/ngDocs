@@ -4,7 +4,7 @@
 	display: block;
 	color: white;
 	text-decoration: none;
-	background: #2ba6cb;
+	background: $standard_color;
 	border: 1px solid #1e728c;
 	font-weight: bold;
 	font-size: 1em;
@@ -17,11 +17,11 @@
 	border-radius: 0;
 }
 .btn.success {
-	background: #BADA55;
+	background: $success_color;
 	border: 1px solid #93ad41;
 }
 .btn.alert {
-	background: #c60f13;
+	background: $alert_color;
 	border: 1px solid #7f0a0c;
 }
 .btn:before {
