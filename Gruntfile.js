@@ -23,8 +23,7 @@ module.exports = function(grunt) {
 				files: {
 					'js/assets.js': [
 						'js/assets.js',
-						'js/prism.js',
-						'plugins/InAppBrowser.js'
+						'js/prism.js'
 					]
 				}
 			}
