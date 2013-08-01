@@ -1925,6 +1925,7 @@ section {
 .doc-wrap table p {
   margin: 0; }
 .doc-wrap img {
+  display: block;
   max-width: 100%;
   height: auto; }
 .doc-wrap h1,
