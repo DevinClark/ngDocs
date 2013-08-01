@@ -198,10 +198,13 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>		$(<span class="string">'a'</span>)
-			.filter(<span class="string">"a[href^='http://'], a[href^='https://'], a[href^='www']"</span>)
+            <div class="content"><div class='highlight'><pre>		
+		$(<span class="string">'a[href^="//"], a[href^="http"]'</span>)
+			.filter( <span class="string">'[href*="'</span> + window.location.hostname + <span class="string">'"]'</span> )
 			.on(<span class="string">'click'</span>, <span class="keyword">function</span>(event) {
 				event.preventDefault();
+
+				console.log(<span class="string">"Outside Link Clicked!"</span>);
 
 				window.open(
 					$(<span class="keyword">this</span>).attr(<span class="string">"href"</span>),
