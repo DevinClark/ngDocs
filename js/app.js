@@ -232,6 +232,35 @@ var ProgressBar = {
 	}
 };
 
+// ## Pretty Notification
+// ``` html
+// <div id="js-notification" class="notification"></div>
+// ```
+// 
+var PrettyNotification = {
+	// ### show(html, priority)
+	// Accepts `html`, what displays in the notification, and `priority` of the notification. Priority can either be "alert", "success", or a custom-defined class.
+	show: function show(html, priority) {
+		priority = (typeof priority === "undefined") ? "" : priority;
+
+		$("#js-notification")
+			.addClass(priority)
+			.addClass("loaded")
+			.html(html);
+	},
+	// ### hide()
+	// Hides the notification by removing the loaded class.
+	hide: function hide() {
+		$("#js-notification").removeClass("loaded");
+	},
+	// ### flash(html, priority, duration)
+	// Shows the notification for 2 seconds if a duration isn't provided.
+	flash: function flash(html, priority, duration) {
+		PrettyNotification.show(html, priority || "");
+		setTimeout(PrettyNotification.hide, duration || 2000);
+	}
+};
+
 // ## Navigation
 var Navigation = {
 	s: {
@@ -363,7 +392,6 @@ Docular.factory('RecentFactory', ['PagesFactory', function(PagesFactory) {
 	var init = function init() {
 		db = openDatabase('ngDocs', '1.0', 'ngDocs Database', 2 * 1024 * 1024);
 		db.transaction(function request(tx) {
-			//tx.executeSql('DROP TABLE recent');
 			tx.executeSql('CREATE TABLE IF NOT EXISTS recent (id, section, date, PRIMARY KEY (id, section))');
 		});
 	};
@@ -376,11 +404,11 @@ Docular.factory('RecentFactory', ['PagesFactory', function(PagesFactory) {
 		init();
 		db.transaction(function request(tx) {
 			tx.executeSql('INSERT INTO recent (id, section, date) VALUES ("' + item[2] + '", "' + item[1] + '", ' + theTime + ')');
-			//console.log('INSERT INTO recent (id, section, date) VALUES ("' + item[2] + '", "' + item[1] + '", ' + theTime + ')');
 		});
 	};
 
 	var clear = function clear() {
+		init();
 		db.transaction(function request(tx) {
 			tx.executeSql('DROP TABLE recent');
 		});
@@ -521,7 +549,7 @@ Docular.controller('APISingleCtrl', ['$rootScope', '$scope', '$routeParams', '$h
 }]);
 
 // ### SettingsCtrl
-Docular.controller('SettingsCtrl', ['$rootScope', '$scope', function($rootScope, $scope) {
+Docular.controller('SettingsCtrl', ['$rootScope', '$scope', 'RecentFactory', function($rootScope, $scope, RecentFactory) {
 	$rootScope.pageTitle = "Settings";
 	$rootScope.loading = false;
 
@@ -530,6 +558,12 @@ Docular.controller('SettingsCtrl', ['$rootScope', '$scope', function($rootScope,
 		{ id: '1.1.5' }
 	];
 	$rootScope.settings.version = $scope.version;
+
+	$scope.clearRecentItems = function() {
+		RecentFactory.clear();
+		PrettyNotification.flash("Cache Cleared!", "success")
+	};
+
 }]);
 
 
@@ -540,7 +574,7 @@ Docular.controller('RecentCtrl', ['$rootScope', '$scope', 'RecentFactory', funct
 	$scope.pages = [];
 
 	// pulls the recent items from a WebSQL db.
-	RecentFactory.list(function(list) {
+	RecentFactory.list(function listCallback(list) {
 		// lets the view know the model has changed.
 		$scope.$apply(function () {
 			$scope.pages = list;
