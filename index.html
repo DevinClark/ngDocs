@@ -38,7 +38,7 @@
 
 		<header class="fixed-header">
 			<div class="btn-group-left">
-				<a ng-click="goBack()" class="btn btn-left icon-reply"></a>
+				<a ng-click="goBack()" ng-show="isSingle == true" class="btn btn-left icon-reply"></a>
 			</div>
 			<h1 ng-bind="pageTitle || 'Docular' | truncate:20"></h1>
 			<div class="btn-group-right mobile-only">
