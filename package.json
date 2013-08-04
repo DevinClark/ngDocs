@@ -9,6 +9,8 @@
     "grunt-css": "~0.5.4",
     "grunt-bower-concat": "git://github.com/sapegin/grunt-bower-concat.git",
     "grunt-casperjs": "~1.0.6",
-    "grunt-shell": "~0.2.2"
+    "grunt-shell": "~0.2.2",
+    "grunt-autoprefixer": "~0.2.20130718",
+    "grunt-contrib-watch": "~0.5.1"
   }
 }

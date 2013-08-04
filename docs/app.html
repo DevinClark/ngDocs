@@ -198,13 +198,10 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>		
-		$(<span class="string">'a[href^="//"], a[href^="http"]'</span>)
-			.filter( <span class="string">'[href*="'</span> + window.location.hostname + <span class="string">'"]'</span> )
+            <div class="content"><div class='highlight'><pre>		$(<span class="string">'a'</span>)
+			.filter(<span class="string">"a[href^='http://'], a[href^='https://'], a[href^='www']"</span>)
 			.on(<span class="string">'click'</span>, <span class="keyword">function</span>(event) {
 				event.preventDefault();
-
-				console.log(<span class="string">"Outside Link Clicked!"</span>);
 
 				window.open(
 					$(<span class="keyword">this</span>).attr(<span class="string">"href"</span>),
@@ -536,6 +533,83 @@
               <div class="pilwrap for-h2">
                 <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
+              <h2>Pretty Notification</h2>
+<pre><code class="lang-html">&lt;div id=&quot;js-notification&quot; class=&quot;notification&quot;&gt;&lt;/div&gt;</code></pre>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> PrettyNotification = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <h3>show(html, priority)</h3>
+<p>Accepts <code>html</code>, what displays in the notification, and <code>priority</code> of the notification. Priority can either be &quot;alert&quot;, &quot;success&quot;, or a custom-defined class.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	show: <span class="function"><span class="keyword">function</span> <span class="title">show</span><span class="params">(html, priority)</span> {</span>
+		priority = (<span class="keyword">typeof</span> priority === <span class="string">"undefined"</span>) ? <span class="string">""</span> : priority;
+
+		$(<span class="string">"#js-notification"</span>)
+			.addClass(priority)
+			.addClass(<span class="string">"loaded"</span>)
+			.html(html);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <h3>hide()</h3>
+<p>Hides the notification by removing the loaded class.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	hide: <span class="function"><span class="keyword">function</span> <span class="title">hide</span><span class="params">()</span> {</span>
+		$(<span class="string">"#js-notification"</span>).removeClass(<span class="string">"loaded"</span>);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <h3>flash(html, priority, duration)</h3>
+<p>Shows the notification for 2 seconds if a duration isn&#39;t provided.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	flash: <span class="function"><span class="keyword">function</span> <span class="title">flash</span><span class="params">(html, priority, duration)</span> {</span>
+		PrettyNotification.show(html, priority || <span class="string">""</span>);
+		setTimeout(PrettyNotification.hide, duration || <span class="number">2000</span>);
+	}
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
               <h2>Navigation</h2>
 
             </div>
@@ -551,11 +625,11 @@
         </li>
         
         
-        <li id="section-24">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>These functions are only needed on mobile. Tablet is getting a different menu.</p>
 
@@ -632,11 +706,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-25">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <h2>Init</h2>
 <p>This method contains defaults that need to run on each load. </p>
@@ -665,11 +739,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-26">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <h2>Services</h2>
 <h3>Pages Factory</h3>
@@ -700,11 +774,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-27">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <h3>RecentFactory</h3>
 
@@ -715,22 +789,8 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
 	<span class="keyword">var</span> db;
 	<span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span> <span class="title">init</span><span class="params">()</span> {</span>
 		db = openDatabase(<span class="string">'ngDocs'</span>, <span class="string">'1.0'</span>, <span class="string">'ngDocs Database'</span>, <span class="number">2</span> * <span class="number">1024</span> * <span class="number">1024</span>);
-		db.transaction(<span class="function"><span class="keyword">function</span> <span class="title">request</span><span class="params">(tx)</span> {</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-28">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
-              </div>
-              <p>tx.executeSql(&#39;DROP TABLE recent&#39;);</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>			tx.executeSql(<span class="string">'CREATE TABLE IF NOT EXISTS recent (id, section, date, PRIMARY KEY (id, section))'</span>);
+		db.transaction(<span class="function"><span class="keyword">function</span> <span class="title">request</span><span class="params">(tx)</span> {</span>
+			tx.executeSql(<span class="string">'CREATE TABLE IF NOT EXISTS recent (id, section, date, PRIMARY KEY (id, section))'</span>);
 		});
 	};
 
@@ -741,25 +801,12 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
 
 		init();
 		db.transaction(<span class="function"><span class="keyword">function</span> <span class="title">request</span><span class="params">(tx)</span> {</span>
-			tx.executeSql(<span class="string">'INSERT INTO recent (id, section, date) VALUES ("'</span> + item[<span class="number">2</span>] + <span class="string">'", "'</span> + item[<span class="number">1</span>] + <span class="string">'", '</span> + theTime + <span class="string">')'</span>);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-29">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
-              </div>
-              <p>console.log(&#39;INSERT INTO recent (id, section, date) VALUES (&quot;&#39; + item[2] + &#39;&quot;, &quot;&#39; + item[1] + &#39;&quot;, &#39; + theTime + &#39;)&#39;);</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>		});
+			tx.executeSql(<span class="string">'INSERT INTO recent (id, section, date) VALUES ("'</span> + item[<span class="number">2</span>] + <span class="string">'", "'</span> + item[<span class="number">1</span>] + <span class="string">'", '</span> + theTime + <span class="string">')'</span>);
+		});
 	};
 
 	<span class="keyword">var</span> clear = <span class="function"><span class="keyword">function</span> <span class="title">clear</span><span class="params">()</span> {</span>
+		init();
 		db.transaction(<span class="function"><span class="keyword">function</span> <span class="title">request</span><span class="params">(tx)</span> {</span>
 			tx.executeSql(<span class="string">'DROP TABLE recent'</span>);
 		});
@@ -793,11 +840,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-30">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <h2>Directives</h2>
 
@@ -806,11 +853,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-31">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <h3>ngEnter</h3>
 
@@ -830,11 +877,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-32">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <h2>Filters</h2>
 
@@ -860,11 +907,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-33">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <h2>Controllers</h2>
 <h3>MainCtrl</h3>
@@ -880,11 +927,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-34">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <h3>APICtrl</h3>
 <p>Handles the top level API page.
@@ -904,11 +951,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-35">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <h3>APISingleCtrl</h3>
 <p>Handles the child level API and guide pages.</p>
@@ -928,11 +975,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-36">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <p>Fix code for PrismJS</p>
 
@@ -949,11 +996,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-37">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p>Fix image links.</p>
 
@@ -966,11 +1013,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-38">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <p>Unlink relative doc links. They don&#39;t work right anyways.</p>
 
@@ -981,11 +1028,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-39">
+        <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p>Removes live example.</p>
 
@@ -999,11 +1046,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-40">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <p>Removes inline styling.</p>
 
@@ -1014,11 +1061,11 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-41">
+        <li id="section-43">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <p>TODO: Tabbed sections need a more mobile-friendly style.</p>
 
@@ -1040,17 +1087,17 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-42">
+        <li id="section-44">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-42">&#182;</a>
+                <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
               <h3>SettingsCtrl</h3>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>Docular.controller(<span class="string">'SettingsCtrl'</span>, [<span class="string">'$rootScope'</span>, <span class="string">'$scope'</span>, <span class="keyword">function</span>($rootScope, $scope) {
+            <div class="content"><div class='highlight'><pre>Docular.controller(<span class="string">'SettingsCtrl'</span>, [<span class="string">'$rootScope'</span>, <span class="string">'$scope'</span>, <span class="string">'RecentFactory'</span>, <span class="keyword">function</span>($rootScope, $scope, RecentFactory) {
 	$rootScope.pageTitle = <span class="string">"Settings"</span>;
 	$rootScope.loading = <span class="literal">false</span>;
 
@@ -1059,16 +1106,22 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
 		{ id: <span class="string">'1.1.5'</span> }
 	];
 	$rootScope.settings.version = $scope.version;
+
+	$scope.clearRecentItems = <span class="keyword">function</span>() {
+		RecentFactory.clear();
+		PrettyNotification.flash(<span class="string">"Cache Cleared!"</span>, <span class="string">"success"</span>)
+	};
+
 }]);</pre></div></div>
             
         </li>
         
         
-        <li id="section-43">
+        <li id="section-45">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-43">&#182;</a>
+                <a class="pilcrow" href="#section-45">&#182;</a>
               </div>
               <h3>RecentCtrl</h3>
 
@@ -1082,26 +1135,26 @@ Docular.config(<span class="keyword">function</span>($httpProvider, $routeProvid
         </li>
         
         
-        <li id="section-44">
+        <li id="section-46">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-44">&#182;</a>
+                <a class="pilcrow" href="#section-46">&#182;</a>
               </div>
               <p>pulls the recent items from a WebSQL db.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	RecentFactory.list(<span class="keyword">function</span>(list) {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>	RecentFactory.list(<span class="function"><span class="keyword">function</span> <span class="title">listCallback</span><span class="params">(list)</span> {</span></pre></div></div>
             
         </li>
         
         
-        <li id="section-45">
+        <li id="section-47">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-45">&#182;</a>
+                <a class="pilcrow" href="#section-47">&#182;</a>
               </div>
               <p>lets the view know the model has changed.</p>
 
