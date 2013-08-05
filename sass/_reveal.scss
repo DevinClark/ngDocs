@@ -5,12 +5,37 @@
  */
 
 /** Reveal Modals */
-.reveal-modal-bg { position: fixed; height: 100%; width: 100%; background: #000; background: rgba(#000, .85); z-index: 100; display: none; top: 0; float: left; }
+.reveal-modal-bg {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background: #000;
+	background: rgba(#000, .85);
+	z-index: 100;
+	display: none;
+	top: 0;
+	float: left;
+}
 
-.reveal-modal { background: #fff; visibility: hidden; display: none; top: 20px; left: 50%; margin-left: -45%; width: 90%; max-height: 90%; overflow: scroll; position: absolute; z-index: 101; padding: 30px; box-shadow: 0 0 10px rgba(#000,.4);
+.reveal-modal {
+	background: #fff;
+	visibility: hidden;
+	display: none;
+	top: 20px;
+	left: 50%;
+	margin-left: -45%;
+	width: 90%;
+	max-height: 90%;
+	overflow: scroll;
+	position: absolute;
+	z-index: 101;
+	padding: 30px;
+	box-shadow: 0 0 10px rgba(#000, 0.4);
+	
 	.modal-inner {
 		height: 100%;
 	}
+
 	.close-reveal-modal:not(.button) {
 		font-size: 30px;
 		line-height: .5;
@@ -18,15 +43,16 @@
 		top: 12px;
 		right: 12px;
 		color: #aaa;
-		text-shadow: 0 -1px 1px rgba(0,0,0,.6);
+		text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
 		font-weight: bold;
 		cursor: pointer;
 	}
-	&.one-fifth   { width: 20%; margin-left: -10%; }
-	&.two-fifths  { width: 40%; margin-left: -20%; }
-	&.one-half   { width: 50%; margin-left: -25%; }
-	&.four-fifths  { width: 80%; margin-left: -40%; }
-	&.full  { width: 90%; margin-left: -45%; }
+	
+	&.one-fifth { width: 20%; margin-left: -10%; }
+	&.two-fifths { width: 40%; margin-left: -20%; }
+	&.one-half { width: 50%; margin-left: -25%; }
+	&.four-fifths { width: 80%; margin-left: -40%; }
+	&.full { width: 90%; margin-left: -45%; }
 
 	@media only screen and (min-width:$medium-start) and (max-width:$medium-end) {
 		&.medium-one-fifth   { width: 20%; margin-left: -10%; }
@@ -44,7 +70,12 @@
 		&.large-full  { width: 90%; margin-left: -45%; }
 	}
 
-	.row { min-width: 0; margin-bottom: 10px; width: 100%; }
+	.row {
+		min-width: 0;
+		margin-bottom: 10px;
+		width: 100%;
+	}
+	
 	> :first-of-type { margin-top: 0; }
 	> :last-of-type { margin-bottom: 0; }
 }

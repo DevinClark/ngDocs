@@ -1,8 +1,11 @@
 html {
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	-webkit-user-select: none;
 }
-html, body { min-height: 100%; overflow-x: hidden; }
+html,
+body {
+	min-height: 100%; overflow-x: hidden;
+}
 body {
 	position: relative;
 }
@@ -44,7 +47,7 @@ section {
 	right: 0;
 	overflow: scroll;
 	-webkit-overflow-scrolling: touch;
-	background: rgba(0,0,0, .5);
+	background: rgba(0, 0, 0, 0.5);
 	color: white;
 
 	ul {
@@ -70,7 +73,7 @@ section {
 		text-decoration: none;
 		position: relative;
 		top: 0;
-		text-shadow: 0 1px 0 rgba(0,0,0,.4);
+		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 		padding: 10px 10px;
 
 		&.odd {
@@ -85,7 +88,7 @@ section {
 
 		&.active {
 			background: $primary_accent_color;
-			text-shadow: 0 1px 0 rgba(255,255,255,.5);
+			text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 			color: black;
 		}
 		span {
@@ -188,7 +191,7 @@ section {
 	}
 	
 	li a:after {
-		content:  "\f138";
+		content:  "\f138"; // icon-chevron-sign-right
 		font-family: 'FontAwesome';
 		position: absolute;
 		right: 10px;

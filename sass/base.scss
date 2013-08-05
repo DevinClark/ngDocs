@@ -2,7 +2,7 @@
 @import "compass/css3/font-face";
 @import "_reset";
 
-/* Responsive Grid Variables */
+// Responsive Grid Variables
 $gutter: 24px;
 $medium-start: 481px;
 $medium-end: 768px;
@@ -10,12 +10,18 @@ $large-start: 769px;
 $large-end: 1026px;
 $small-end: $medium-start - 1px;
 
-/* Colors */
+// Colors
 $primary_accent_color: #ca3c32;
 
 $standard_color: #2ba6cb;
 $alert_color: #c60f13;
 $success_color: #BADA55;
+
+// Font Stacks
+$bold_stack: "Open Sans Bold", Helvetica, Arial, sans-serif;
+$italic_stack: "Open Sans Italic", Helvetica, Arial, sans-serif;
+$body_stack: "Open Sans", Helvetica, Arial, sans-serif;
+$title_stack: Helvetica, Arial, sans-serif;
 
 @import "_grid";
 @import "_webfonts";

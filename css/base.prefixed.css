@@ -148,10 +148,6 @@ summary {
   display: block;
 }
 
-/* Responsive Grid Variables */
-
-/* Colors */
-
 .grid {
   list-style: none;
   margin: 0;
@@ -2255,22 +2251,6 @@ textarea {
 .slider .caption-bottom {
   bottom: 8px;
   top: auto;
-}
-
-.fade-enter,
-.fade-leave {
-  -webkit-transition: 1000ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
-  transition: 1000ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
-}
-
-.fade-enter.animate-enter-active,
-.fade-enter {
-  opacity: 0;
-}
-
-.fade-leave.animate-leave-active,
-.fade-leave {
-  opacity: 1;
 }
 
 /**

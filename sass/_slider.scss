@@ -14,6 +14,7 @@
 			position: relative;
 		}
 	}
+
 	.caption {
 		position: absolute;
 		display: block;
@@ -21,6 +22,7 @@
 		left: 8px;
 		color: white;
 	}
+	
 	.caption-top { top: 8px; bottom: auto; }
 	.caption-bottom { bottom: 8px; top: auto; }
 }

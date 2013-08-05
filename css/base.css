@@ -1,8 +1,6 @@
 *,
 *:before,
 *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
 html, body, div, span, applet, object, iframe,
@@ -52,8 +50,6 @@ a img {
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block; }
 
-/* Responsive Grid Variables */
-/* Colors */
 .grid {
   list-style: none;
   margin: 0;
@@ -1596,18 +1592,6 @@ textarea {
     bottom: 8px;
     top: auto; }
 
-.fade-enter,
-.fade-leave {
-  transition: 1000ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all; }
-
-.fade-enter.animate-enter-active,
-.fade-enter {
-  opacity: 0; }
-
-.fade-leave.animate-leave-active,
-.fade-leave {
-  opacity: 1; }
-
 /**
  * prism.js default theme for JavaScript, CSS and HTML
  * Based on dabblet (http://dabblet.com)
@@ -1738,7 +1722,8 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-user-select: none; }
 
-html, body {
+html,
+body {
   min-height: 100%;
   overflow-x: hidden; }
 
