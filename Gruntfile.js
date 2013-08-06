@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 		bower: {
 			all: {
 				dest: 'js/assets.js',
-				exclude: ['prefix-free'],
+				exclude: [],
 				dependencies: {
 					'fitvids': 'jquery',
 					'angular-mobile': 'angular',
