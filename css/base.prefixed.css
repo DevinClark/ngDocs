@@ -1,7 +1,6 @@
 *,
 *:before,
 *:after {
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -162,7 +161,6 @@ summary {
   vertical-align: top;
   letter-spacing: normal;
   word-spacing: normal;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -714,13 +712,11 @@ a [class*=" icon-"]:before {
 @keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
   100% {
     -webkit-transform: rotate(359deg);
-    -ms-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
@@ -729,31 +725,26 @@ a [class*=" icon-"]:before {
 
 .icon-rotate-90:before {
   -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
 .icon-rotate-180:before {
   -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
 .icon-rotate-270:before {
   -webkit-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 
 .icon-flip-horizontal:before {
   -webkit-transform: scale(-1, 1);
-  -ms-transform: scale(-1, 1);
   transform: scale(-1, 1);
 }
 
 .icon-flip-vertical:before {
   -webkit-transform: scale(1, -1);
-  -ms-transform: scale(1, -1);
   transform: scale(1, -1);
 }
 
@@ -2391,8 +2382,6 @@ pre.line-numbers > code {
   letter-spacing: -1px;
   border-right: 1px solid #999;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 

@@ -54,7 +54,8 @@ module.exports = function(grunt) {
 		autoprefixer: {
 			dist: {
 				options: {
-					browsers: ['last 2 versions', 'ios 7', 'safari 6', 'chrome 28']
+					// ios >= 5 is not working for me. 
+					browsers: ['ios 5', 'ios 6', 'ios 7', 'chrome 28']
 				},
 				files: {
 					'css/base.prefixed.css': ['css/base.css']
@@ -72,6 +73,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-shell');
 	grunt.loadNpmTasks('grunt-autoprefixer');
 
-	grunt.registerTask('default', ['shell', 'bower', 'uglify', 'cssmin']);
+	grunt.registerTask('default', ['shell', 'bower', 'uglify', 'autoprefixer', 'cssmin']);
 	grunt.registerTask('test', ['shell', 'jshint']);
 };
