@@ -2266,6 +2266,7 @@ pre[class*="language-"] {
   white-space: pre;
   word-spacing: normal;
   tab-size: 2;
+  -webkit-hyphens: none;
   hyphens: none;
 }
 

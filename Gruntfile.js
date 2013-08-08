@@ -54,8 +54,7 @@ module.exports = function(grunt) {
 		autoprefixer: {
 			dist: {
 				options: {
-					// ios >= 5 is not working for me. 
-					browsers: ['ios 5', 'ios 6', 'ios 7', 'chrome 28']
+					browsers: ['ios >= 5', 'chrome >= 28']
 				},
 				files: {
 					'css/base.prefixed.css': ['css/base.css']
