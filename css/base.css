@@ -1441,7 +1441,7 @@ form ul {
 .label {
   background: #2ba6cb;
   color: white;
-  font-weight: bold;
+  font-family: "Open Sans Bold", Helvetica, Arial, sans-serif;
   padding: 4px 4px;
   display: inline-block;
   position: relative;
@@ -1960,14 +1960,16 @@ table {
   table thead,
   table tfoot {
     background: whitesmoke;
-    font-family: 'Open Sans Bold'; }
+    font-family: "Open Sans Bold", Helvetica, Arial, sans-serif;
+    font-weight: normal; }
     table thead td,
     table thead th,
     table tfoot td,
     table tfoot th {
       padding: 8px 10px;
       color: #222222;
-      text-align: left; }
+      text-align: left;
+      font-weight: normal; }
   table th,
   table td {
     padding: 9px 10px;

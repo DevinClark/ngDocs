@@ -305,14 +305,16 @@ table {
 	thead,
 	tfoot {
 		background: whitesmoke;
-		font-family: 'Open Sans Bold';
+		font-family: $bold_stack;
+		font-weight: normal;
 
 		td,
 		th {
 			//padding: 0.5em 0.625em 0.625em;
 			padding: 8px 10px;
 			color: #222222;
-			text-align: left; 
+			text-align: left;
+			font-weight: normal;
 		}
 	}
 
