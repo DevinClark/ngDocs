@@ -42,14 +42,25 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		compass: {
+			dist: {
+				options: {
+					config: 'config.rb'
+				}
+			}
+		},
 		watch: {
+			sass: {
+				files: ['sass/*.scss'],
+				tasks: ['compass']
+			},
 			css: {
 				files: ['css/base.css'],
 				tasks: ['autoprefixer', 'cssmin'],
 				options: {
 					spawn: false,
 				},
-			},
+			}
 		},
 		autoprefixer: {
 			dist: {
@@ -71,6 +82,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-css');
 	grunt.loadNpmTasks('grunt-shell');
 	grunt.loadNpmTasks('grunt-autoprefixer');
+	grunt.loadNpmTasks('grunt-contrib-compass');
 
 	grunt.registerTask('default', ['shell', 'bower', 'uglify', 'autoprefixer', 'cssmin']);
 	grunt.registerTask('test', ['shell', 'jshint']);
