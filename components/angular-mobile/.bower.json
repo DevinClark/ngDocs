@@ -1,0 +1,11 @@
+{
+  "name": "angular-mobile",
+  "_cacheHeaders": {
+    "Last-Modified": "Tue, 04 Jun 2013 16:26:13 GMT",
+    "Content-Length": "17036",
+    "Content-Type": "application/x-javascript"
+  },
+  "main": "index.js",
+  "_source": "http://code.angularjs.org/1.1.5/angular-mobile.js",
+  "_target": "*"
+}
