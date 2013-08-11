@@ -1592,6 +1592,22 @@ textarea {
     bottom: 8px;
     top: auto; }
 
+.slidein-enter, .slidein-leave {
+  transition: all 2s ease;
+  position: absolute; }
+
+.slidein-enter {
+  left: -100%; }
+
+.slidein-enter.slidein-enter-active {
+  left: 0; }
+
+.slidein-leave {
+  left: 0; }
+
+.slidein-leave.slidein-leave-active {
+  left: 100%; }
+
 /**
  * prism.js default theme for JavaScript, CSS and HTML
  * Based on dabblet (http://dabblet.com)
