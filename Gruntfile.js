@@ -1,5 +1,8 @@
 module.exports = function(grunt) {
 
+	// load all grunt tasks matching the `grunt-*` pattern
+	require('load-grunt-tasks')(grunt);
+
 	grunt.initConfig({
 		bower: {
 			all: {
@@ -73,16 +76,6 @@ module.exports = function(grunt) {
 			}
 		}
 	});
-
-	grunt.loadNpmTasks('grunt-bower-concat');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-casperjs');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-css');
-	grunt.loadNpmTasks('grunt-shell');
-	grunt.loadNpmTasks('grunt-autoprefixer');
-	grunt.loadNpmTasks('grunt-contrib-compass');
 
 	grunt.registerTask('default', ['shell', 'bower', 'uglify', 'autoprefixer', 'cssmin']);
 	grunt.registerTask('test', ['shell', 'jshint']);
